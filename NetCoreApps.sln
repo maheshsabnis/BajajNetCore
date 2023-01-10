@@ -18,6 +18,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notes", "Notes", "{9638850B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS_Arrays", "CS_Arrays\CS_Arrays.csproj", "{2B97FE64-CDDB-4AE7-A4C9-9E392661C5AB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS_Array_Methods", "CS_Array_Methods\CS_Array_Methods.csproj", "{68DDC805-B615-48AD-A403-06E047019AE1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{2B97FE64-CDDB-4AE7-A4C9-9E392661C5AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B97FE64-CDDB-4AE7-A4C9-9E392661C5AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B97FE64-CDDB-4AE7-A4C9-9E392661C5AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68DDC805-B615-48AD-A403-06E047019AE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68DDC805-B615-48AD-A403-06E047019AE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68DDC805-B615-48AD-A403-06E047019AE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68DDC805-B615-48AD-A403-06E047019AE1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
