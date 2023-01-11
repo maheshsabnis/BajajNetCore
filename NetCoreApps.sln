@@ -5,28 +5,34 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CS_FirstApp", "CS_FirstApp\CS_FirstApp.csproj", "{8CB859C3-0195-4143-86F5-C7A5B634CD1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS_DataTYypes", "CS_DataTYypes\CS_DataTYypes.csproj", "{BB546955-20FB-4796-9251-5CA3DDCF9B27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CS_DataTYypes", "CS_DataTYypes\CS_DataTYypes.csproj", "{BB546955-20FB-4796-9251-5CA3DDCF9B27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS_IntInfo", "CS_IntInfo\CS_IntInfo.csproj", "{E56751BE-C795-470B-9B34-5D7C45233B9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CS_IntInfo", "CS_IntInfo\CS_IntInfo.csproj", "{E56751BE-C795-470B-9B34-5D7C45233B9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS_String", "CS_String\CS_String.csproj", "{6DDD5656-ADC6-4368-9D92-FD06A1CD8EE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CS_String", "CS_String\CS_String.csproj", "{6DDD5656-ADC6-4368-9D92-FD06A1CD8EE8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notes", "Notes", "{9638850B-CED8-4F18-B909-5C5D53EF9C38}"
 	ProjectSection(SolutionItems) = preProject
 		readme.md = readme.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS_Arrays", "CS_Arrays\CS_Arrays.csproj", "{2B97FE64-CDDB-4AE7-A4C9-9E392661C5AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CS_Arrays", "CS_Arrays\CS_Arrays.csproj", "{2B97FE64-CDDB-4AE7-A4C9-9E392661C5AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS_Array_Methods", "CS_Array_Methods\CS_Array_Methods.csproj", "{68DDC805-B615-48AD-A403-06E047019AE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CS_Array_Methods", "CS_Array_Methods\CS_Array_Methods.csproj", "{68DDC805-B615-48AD-A403-06E047019AE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS_Collections", "CS_Collections\CS_Collections.csproj", "{5909692A-CA4E-4DAF-BC8A-A15ED93F0052}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CS_Collections", "CS_Collections\CS_Collections.csproj", "{5909692A-CA4E-4DAF-BC8A-A15ED93F0052}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS_STring_Interpolation_Template_String", "CS_STring_Interpolation_Template_String\CS_STring_Interpolation_Template_String.csproj", "{3CC89FDE-9A1E-4FF4-86DF-48BE8C41C74C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CS_STring_Interpolation_Template_String", "CS_STring_Interpolation_Template_String\CS_STring_Interpolation_Template_String.csproj", "{3CC89FDE-9A1E-4FF4-86DF-48BE8C41C74C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OOPsApps", "OOPsApps", "{E3F6E50C-0148-4477-AECA-9B6456035504}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS_SimpleOOPs", "CS_SimpleOOPs\CS_SimpleOOPs.csproj", "{FF3E3A82-F71A-4AA8-9816-A7D5987E868B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CS_SimpleOOPs", "CS_SimpleOOPs\CS_SimpleOOPs.csproj", "{FF3E3A82-F71A-4AA8-9816-A7D5987E868B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS_OOPs_Understanding", "CS_OOPs_Understanding\CS_OOPs_Understanding.csproj", "{A7107127-CEA5-4ECA-84F3-14706077D801}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{06F02188-325F-4666-B6A6-E50A1C2C8542}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS_AppliedOOPs", "CS_AppliedOOPs\CS_AppliedOOPs.csproj", "{4BD4EB0C-4B7E-4154-8368-837D80B588A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -70,12 +76,22 @@ Global
 		{FF3E3A82-F71A-4AA8-9816-A7D5987E868B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF3E3A82-F71A-4AA8-9816-A7D5987E868B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF3E3A82-F71A-4AA8-9816-A7D5987E868B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7107127-CEA5-4ECA-84F3-14706077D801}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7107127-CEA5-4ECA-84F3-14706077D801}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7107127-CEA5-4ECA-84F3-14706077D801}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7107127-CEA5-4ECA-84F3-14706077D801}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BD4EB0C-4B7E-4154-8368-837D80B588A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BD4EB0C-4B7E-4154-8368-837D80B588A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BD4EB0C-4B7E-4154-8368-837D80B588A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BD4EB0C-4B7E-4154-8368-837D80B588A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{FF3E3A82-F71A-4AA8-9816-A7D5987E868B} = {E3F6E50C-0148-4477-AECA-9B6456035504}
+		{A7107127-CEA5-4ECA-84F3-14706077D801} = {E3F6E50C-0148-4477-AECA-9B6456035504}
+		{4BD4EB0C-4B7E-4154-8368-837D80B588A3} = {06F02188-325F-4666-B6A6-E50A1C2C8542}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {83E0AA4B-BE4F-4DD9-888C-C4251B89AF1C}
