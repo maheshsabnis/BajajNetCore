@@ -12,10 +12,24 @@ namespace CS_AppliedOOPs.Models
         // ArrayList EmployeeDTO
         ArrayList employees = new ArrayList();
 
+        /// <summary>
+        /// MOdify the method for Not Accepting Employee With Same EmpNo
+        /// </summary>
+        /// <param name="employee"></param>
         public void AddEmployee(EmployeeDTO employee)
         { 
+
             employees.Add(employee);
         }
+
+
+        /// <summary>
+        /// Method to Update Exisiting Employee from ArrayLIst
+        /// </summary>
+        /// <returns></returns>
+
+        /// Method to Delete an Existing Employe from Array List
+
 
         public ArrayList GetEmployees()
         {
