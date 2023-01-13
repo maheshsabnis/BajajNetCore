@@ -31,6 +31,14 @@
 	- Reusable functions those are responsible to Abstract the class behavior
 	- The may habe input Parameters and also can return data using Output Parameters 
 	- The method that does not return anything is define as 'void'
+	- Method parameters
+		- pass by val
+			- int x,y;
+			- Define method	
+				- void m1(int a,int b)
+			- call method
+				- m1(x,y);
+			- x and y are actual parameters and a,b are formal parameters
 
 # Generics
 - Typesafe collections to stre data in-memory
@@ -91,3 +99,28 @@
 		- if(condition) {throw new Exception("");}
  	
 		
+# USing Files
+- System.IO namespace
+	- File
+		- Contains static methdo for 
+			- CReate, Read, Append, Copy, Move, Delete
+	- FileInfo 
+		- COntains methods similar with the File class but instance is required
+			- FileInfo f = new FileINfo();
+	- Directory and DirectoryInfo
+		- Managing directories
+	- The 'Stream'
+		- Work over a stream of data that will be Read and Written from and to following
+			- FileStream
+				- Text and Binary Files
+			- MemoryStream
+				- Data stored in Memory
+			- NetworkStream
+				- Share Stream Data Across Network
+				- E.g.
+					- File Upload and Download
+		- Reader and Writer classes
+			- StreaReader and StreamWriter
+			- TextReader and TextWriter
+			- BinaryReader and BinaryWriter
+		- All these are 'UnManaged' objects, the CLR or dotnet.exe is not resposnible for controlling them
