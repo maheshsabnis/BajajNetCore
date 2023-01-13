@@ -18,7 +18,7 @@ try
 }
 catch (Exception ex)
 {
-    Console.WriteLine($"Error Occuured : {ex.Message}");
+    Console.WriteLine($"Error Occuured : {ex.Message}");  Console.WriteLine(ex.ToString());
 }
 
 
