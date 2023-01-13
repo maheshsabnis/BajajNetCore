@@ -31,3 +31,63 @@
 	- Reusable functions those are responsible to Abstract the class behavior
 	- The may habe input Parameters and also can return data using Output Parameters 
 	- The method that does not return anything is define as 'void'
+
+# Generics
+- Typesafe collections to stre data in-memory
+- System.Collections.Generics namespace
+	- List<T>
+	- LinkedList<T>
+	- Statck<T>
+	- Queue<T>
+	- DIctionary<T,U>
+- THe 'T' is a TYpe-Parameter aka the data type for which the current class will be used
+- ALl These classes implements  'IEnumerable<T>' interface
+	- This is used to read each entry from the Generic Collection
+	- This is possible using foreach..lopp
+- We can use Language-INtegrated-Query (LINQ)	to read data from Collection using following aprrocahes
+	- Combination of Extension Methods having following two input paramters to them
+		- Action | Action<T> delegate
+			- The Action delegate as void as output parameter
+			- The Action<T> is the delegate having T as input parameter 
+		- Func<T,U> delegate 
+			- T is type and U is condition to evaluate the expression
+	- Extension Methods						- Keywords
+		- Select()							- select
+		- Where()							- where
+		- OrderBy()							- orderby 
+		- OrderByDescending()				- orderby [proeprty-name] desc
+		- GroupBy()							- group [property-name] by 
+		- ...
+
+	- Scalar Methods
+		- Sum(), Max(), Min(), Average()
+	- Method to Take and Skip records based on its indexed
+		- Take(), Skip()
+		- TakeAny(), SkipAny()
+- LINQ to Object aka OLinq
+	- Executing Queries over the Collection (COllection / Generics)
+- LINQ to XML aka XLinq
+	- Executing LINQ on the Xml files
+- LINQ to Data aka DLinq
+	- Executing LINQ queries on Data BAse programming
+		- Included in Entity Framework Core aka (EF Core)
+
+- Handling Errors using 'Exception-Handling'
+	- try{...}catch() {} finally {}
+		- The 'Exception' is a Highest-Level class for Error Handling using 'System' Namespace
+		- NuffReferenceException
+		- SqlException
+		- FileNotFoundException
+		- InvalidOPerationException
+		-....
+	- Mandatory blocks
+		- try{...}.catch(){...}
+		- finally is always executed
+	- Multiple catch for one try{...} block
+		- try {......}catch(ex1){....}catch(ex2){....}
+			- Make ure that the 'Exception' is used in last catch(){...} block
+	- Nested try{.. try {... try {....}}}catch(){....}
+	- COditionaly exception can be thrown using 'throw' keword
+		- if(condition) {throw new Exception("");}
+ 	
+		
