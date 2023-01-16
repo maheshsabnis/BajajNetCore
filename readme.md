@@ -124,3 +124,105 @@
 			- TextReader and TextWriter
 			- BinaryReader and BinaryWriter
 		- All these are 'UnManaged' objects, the CLR or dotnet.exe is not resposnible for controlling them
+
+# Using EF COre
+- Install FOllowig PAckages
+	- Microsoft.EntityFrameworkCore
+		- BAse Package for Using EF COre in Appliation
+		- Provide classes for Establishing Conenction with DB
+	- Microsoft.EntityFrameworkCore.SqlServer
+		- Use for Managing Operations with SQL Server
+	- Microsoft.EntityFrameworkCore.Ralational
+		- Used for Managing DB Operations (aka Transactions) based on Ralationship across Tables
+	- Microsoft.EntityFrameworkCore.Tools
+		- Provides Command-Line Tool to generate Classes from Tables
+	- Microsoft.EntityFrameworkCore.Desgin
+		- USed to make sure that the Geerated Class DEsign mapped with the actual Table DEsign with Ralations
+- Installing Packages for the project
+	- using Visual Studio
+		- Right-CCLick on Project NAme --> Select Managed NuGet PAckagegs--> THis will open the table for NuGet Pakage --> Search Package from the Search TextBox --> Once the package in DIsplayed -> Select its version and install it
+	- USing ommand LIne Interface (CLI)
+		- OPen Command Prompt
+		- Navigate to the Project Folder
+		- Run the Comman
+			- dotnet add package [PACKAGE-NAME] -v [VERSION-NO]
+			- e.g.
+				- dotnet add package Microsoft.EntityFrameworkCore -v 6.0.11
+				- dotnet add package Microsoft.EntityFrameworkCore.SqlServer -v 6.0.11
+				- dotnet add package Microsoft.EntityFrameworkCore.Tools -v 6.0.11
+				- dotnet add package Microsoft.EntityFrameworkCore.Design -v 6.0.11
+				- dotnet add package Microsoft.EntityFrameworkCore.Relational -v 6.0.11
+
+- Generate Model classes aka Entity classes from Database (Db-First Approach)
+	- Make sure that the dotnet ef core in installed on the machine
+		- dotnet tool install --global dotnet-ef
+	- Run the following from the Project path
+		- dotnet ef dbcontext scaffold "[CONNECTION-STRING]" Microsoft.EntityFrameworkCore.SqlServer -o Models
+		- e.g.
+			- dotnet ef dbcontext scaffold "Data Source=.;Initial Catalog=BajajCompany;Integrated Security=SSPI" Microsoft.EntityFrameworkCore.SqlServer -o Models
+				- The project will be added with 'Models' flder with classes mapped with all tables from BajajCompany database as well as the DbContext class which will be used for Connection Management, Table Mapping with classes and Transactions 
+
+			- dotnet ef dbcontext scaffold "Data Source=.;Initial Catalog=BajajCompany;Integrated Security=SSPI" Microsoft.EntityFrameworkCore.SqlServer -o Models
+
+			- dotnet ef dbcontext scaffold "Data Source=.\SqlExpress;Initial Catalog=BajajCompany;User Id=sa;Password=P@ssw0rd_" Microsoft.EntityFrameworkCore.SqlServer -o Models
+
+			- SQL Express w/o User id and Password
+			- dotnet ef dbcontext scaffold "Data Source=.\SqlExpress;Initial Catalog=BajajCompany;Integrated Security=SSPI" Microsoft.EntityFrameworkCore.SqlServer -o Models
+	- EF Core Object Model
+		- DbContext
+			- The base class for EF COre
+			- Managed Connection with the DB Server
+			- Manages Entity Class Mapping with Database Tables usig 'DbSet<T>'
+				- T is the Entity CLass mapped with table name 'T'
+			- Manages DB Transactions using 'SaveChanges()' and 'SaveChangesAsync()' methods
+		- DbSet<T>
+			- T is Entity Class mapped with DB Table NAmed 'T'
+			- Represents the Cursor for performing Read/Write OPerations
+	- Pseudo
+		- Consider 'ctx' is an instance of DbContext
+		- Consider 'Employee' is Entity class
+		- Consider DbSet<Employee is 'Employees'
+
+	- To REad all Employees
+		- var emps = ctx.Employees.ToList(); OR ctx.Employees.ToListAsync();
+			- For TOListAsync(), Microsot.EntityFrameworkCore MUST be used in Code-File
+	- TO Search Record based in Primary Key
+		- var emp = ctx.Employees.Find(PK VALUE); OR ctx.Employess.FindAsync(PK Value);
+	- To Add New Record
+		- Create an Instance of ENtity Class
+			- var emp = new EMployee();
+		- Set all of its Properties
+			- emp.EmpNo="EMp-101"; emp.EmpNAme="DDD";...
+		- Add this object into DbSet<Employee>
+			- ctx.Employees.Add(emp); OR ctx.Employees.AddAsync(emp);
+		- Commit Transaction
+			- ctx.SaveChanges(); OR ctx.SaveChangesAsync();
+	- Adding Mutiple Records
+		- Craete an Array/List of Entity Class
+		- Set value for each employee in the Array/List
+		- Add it in the DbSet<Employee>
+		- ctx.Employees.AddRange(LIST/ARRAY); OR  ctx.Employees.AddRangeAsync(LIST/ARRAY);
+		- Commit Transaction
+			- ctx.SaveChanges(); OR ctx.SaveChangesAsync();
+	- To Update Record
+		- Search Record based on Primay Key
+			- var emp = ctx.Employees.Find(PK Value); SYnc /  Async
+		- Update emp values
+		- Commit Transaction
+			- ctx.SaveChanges(); OR ctx.SaveChangesAsync();
+	- To Delete REcord
+		- Search Record based on Primay Key
+			- var emp = ctx.Employees.Find(PK Value); SYnc /  Async
+		- Remove the record from DbSet
+			- ctx.Employees.Remove(emp);
+		- Commit Transaction
+			- ctx.SaveChanges(); OR ctx.SaveChangesAsync();
+
+	- To Search on Key other than Primary Key
+		- Use LINQ
+
+
+
+
+# ASP.NET Core 6
+
