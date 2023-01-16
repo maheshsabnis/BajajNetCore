@@ -22,3 +22,16 @@ Create Table Employee
 )
 
 
+ 
+INsert into Department Values('Dept-20', 'HRD',15,'Pune')
+INsert into Department Values('Dept-30', 'SALES',20,'Pune')
+
+select * from Department
+
+Insert into Employee Values('EmpNo-1002', 'Tejas', 'Manager',2222,1);
+Insert into Employee Values('EmpNo-1003', 'Vikram', 'Director',142222,2);
+Insert into Employee Values('EmpNo-1004', 'Suprotim', 'Manager',42222,2);
+Insert into Employee Values('EmpNo-1005', 'Manish', 'Director',622222,3);
+Insert into Employee Values('EmpNo-1006', 'Praveen', 'Manager',82222,3);
+
+select * from Employee
