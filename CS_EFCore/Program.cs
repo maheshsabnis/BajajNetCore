@@ -19,12 +19,15 @@ foreach (var d in depts)
 // INsert
 Department dept = new Department() 
 {
-    DeptUniqueId = 4,
-    DeptNo = "Dept-40",
-    DeptName = "Training-JAVA",
+   // DeptUniqueId = 4,
+    DeptNo = "Dept-60",
+    DeptName = "Accounts",
     Capacity = 45,
-    Location = "Mumbai-Andheri-East"
+    Location = "Pune"
 };
+
+var NewDept = deptDa.AddDepartment(dept);
+
 
  var result = deptDa.DeleteDepartment(dept.DeptUniqueId);
 
