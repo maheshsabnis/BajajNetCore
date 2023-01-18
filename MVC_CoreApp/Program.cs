@@ -38,7 +38,7 @@ builder.Services.AddDbContext<BajajCompanyContext>(options =>
 // REgister the Additional Service classes
 
 builder.Services.AddScoped<DepartmentDataAccess>();
-
+builder.Services.AddScoped<EmployeeDataAccess>();
 
 
 // Added in .NET 6 standard Error Page

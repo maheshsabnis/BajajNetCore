@@ -1,10 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
+using MVC_CoreApp.Models;
 using System.Diagnostics;
 
 namespace MVC_CoreApp.CustomFilters
 {
+
+
     public class LogFilterAttribute : ActionFilterAttribute
     {
+        BajajCompanyContext ctx;
+
+        public LogFilterAttribute(BajajCompanyContext c)
+        {
+            ctx = c;
+        }
+        
         private void LogRequest(string currentState, RouteData route)
         {
             string controller = route.Values["controller"].ToString();
