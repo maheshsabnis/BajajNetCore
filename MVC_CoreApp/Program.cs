@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using MVC_CoreApp.CustomFilters;
 using MVC_CoreApp.Data;
 using MVC_CoreApp.Models;
 using MVC_CoreApp.Services;
+using System.Reflection;
 // 1. Beginning of the ASP.NET Core Execution
 // THis is used to build require Objects those are used during
 // execution
@@ -47,7 +49,14 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 
 // 1.a.4: A method tat is used to accept requesr for MVC Controllers
 // and handle its execution to return Views
-builder.Services.AddControllersWithViews();
+
+// Define Action FIlter in GLobal Level for MVC and API Cotrollers
+builder.Services.AddControllersWithViews(options => 
+{
+    options.Filters.Add(typeof(LogFilterAttribute));
+    // Register the Exception Filter
+    options.Filters.Add(typeof(AppExceptionFilterAttribute));
+});
 
 
 // Middlewares

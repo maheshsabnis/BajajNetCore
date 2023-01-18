@@ -69,3 +69,39 @@
 	- The 'Model' property is used to access public properties of the Model class on View
 	- The 'ViewData' propert is used to pass additional data from Actio MEthod to View which is not included in Model class(?)
 		- "One View Can be passed with only-One Model class object"
+
+# MVC Programming
+- Data VAlidations
+	- USing Sstem.COmponentModel.DataAnnotations
+		- ValidationAttribute Abstract base class
+			- IsValid(object value) virtual method, return boolean
+				- true: Valid
+				- false: Invalid
+		- RequiredAttribute
+		- StringLengthAttribute
+		- CompareAttribute
+		- RangeAttribute
+		- RegExAttribute
+		- ....
+	- In Action Method use the following to check if the Model send to action method using POST is vaid or not
+		- if(ModelState.IsValid)
+	- TO write a custom Model Validator, create a class which is derived from ValiationAttribute base class and override its 'IsVAlid()' method 
+- Process Validations aka Exception Handling
+	- Try..Catch block for Each Method
+	- Global Exception Handlign Object
+		- USing 'Action Filters'
+	- RouteData
+		- THis is Property of the type RouteData class in ControllerBAse clas
+			- This is used to Read the URL or current Route Expression using 'Values' property
+- Action Filters
+	- We can create a Custom Action Filters by creating class which is derived from ActionFilterAttribute class and by overriding is followign methods
+		- OnActionExecuting(ActionExecutingContext )
+		- OnActionExecuted(ActionExecutedContext)
+		- OnResulrExecuting(ResultExecutingContext )
+		- OnResultExecuted(ResultExecutedContext)
+	- ALl these context classes are derived from FilterContext and The FilterContext is deried from ActionContext base class
+		- Hence these methos will be executed when the filter is applied on 'Controller' class or on ActionMethod
+	- For Exception, the class MUST implement 'IExceptionFilter' interface and implement it 'OnExceptionMethod(ExceptionContext )'
+- Sharing Data Across Controllers
+	- Sessions
+	- TempData

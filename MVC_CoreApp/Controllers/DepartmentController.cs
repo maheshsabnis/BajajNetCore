@@ -1,9 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MVC_CoreApp.CustomFilters;
 using MVC_CoreApp.Models;
 using MVC_CoreApp.Services;
 
 namespace MVC_CoreApp.Controllers
 {
+    /// <summary>
+    /// APplying Action Filter at Controller Level
+    /// Hence applied for all action methods in the Current Controller
+    /// </summary>
+   // [LogFilter]
     public class DepartmentController : Controller
     {
         // Referece for DepartmentDataAccess
@@ -21,7 +27,11 @@ namespace MVC_CoreApp.Controllers
             deptDa = da;  
         }
 
-
+        /// <summary>
+        /// Applying Action Filter on Action Method
+        /// </summary>
+        /// <returns></returns>
+        //[LogFilter]
         public IActionResult Index()
         {
             var records = deptDa.GetDepartments();
@@ -43,11 +53,50 @@ namespace MVC_CoreApp.Controllers
         [HttpPost]
         public IActionResult Create(Department rec) 
         {
-            var entity = deptDa.AddDepartment(rec);
-            // Navigate to 'Index' action method so that
-            // it will show the 'Index' view with
-            // newly added record
-            return RedirectToAction("Index");
+            //try
+            //{
+            // Check for the Validtity of the Model Class
+            if (ModelState.IsValid)
+            {
+                // Before calling ass please check if the DeptNo is already present
+                var dept = deptDa.GetDepartments().Where(d => d.DeptNo == rec.DeptNo).FirstOrDefault();
+                if (dept != null)
+                {
+                    // define a ViewData to pass additional information to UI
+                   // ViewData["Message"] = $"DeptNo {rec.DeptNo} is already exist";
+                   //ViewBag.Message = $"DeptNo {rec.DeptNo} is already exist";
+                    throw new Exception($"DeptNo {rec.DeptNo} is already exist");
+                    //return View(dept);
+
+                }
+                else
+                {
+                    var entity = deptDa.AddDepartment(rec);
+                    // Navigate to 'Index' action method so that
+                    // it will show the 'Index' view with
+                    // newly added record
+                    return RedirectToAction("Index");
+                }
+            }
+            else
+            {
+                // Stey on the Same Page to show Error MEssages
+                return View(rec);
+            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    // Return Error Page, this is present in
+            //    // 'Shared' sub-folder of 'Views' folder
+            //    return View("Error", new ErrorViewModel() 
+            //    {
+            //       //ControllerName = "Department",
+            //       //ActionName =  "Create",
+            //       ControllerName = this.RouteData.Values["controller"].ToString(),
+            //       ActionName= this.RouteData.Values["action"].ToString(),
+            //       ErrorMessage= ex.Message
+            //    });
+            //}
         }
 
         public IActionResult Edit(int id)
@@ -58,6 +107,8 @@ namespace MVC_CoreApp.Controllers
         [HttpPost]
         public IActionResult Edit(int id, Department rec) 
         {
+            if (rec.Capacity == 0)
+                throw new Exception("USeless Department");
             var record = deptDa.UpdateDepartment(id, rec);
             return RedirectToAction("Index");
         }
