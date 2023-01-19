@@ -48,7 +48,6 @@ namespace MVC_CoreApp.Controllers
             //Department deptData = JsonSerializer.Deserialize<Department>(HttpContext.Session.GetString("Dept"));
 
             Department deptData = HttpContext.Session.GetObjet<Department>("Dept");
-
             if (deptUniqueId == 0)
             {
                 records = empDa.GetEmployees();

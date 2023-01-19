@@ -1,0 +1,16 @@
+﻿@model Microsoft.AspNetCore.Identity.IdentityRole
+
+<h1>Create NEw Role</h1>
+
+<form asp-action="Create">
+
+    <div class="form-group">
+        <label>ENter Role Name</label>
+        <input asp-for="@Model.Name" class="form-control"/>
+    </div>
+
+
+    <div class="form-group">
+        <input type="submit" value="Create Role" class="btn btn-primary"/>
+    </div>
+</form>

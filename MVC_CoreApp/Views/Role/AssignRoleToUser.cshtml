@@ -1,0 +1,42 @@
+﻿@model MVC_CoreApp.Models.UserRole
+
+@{
+    ViewData["Title"] = "AssignRoleToUser";
+}
+
+<h1>AssignRoleToUser</h1>
+
+<div>
+    <form asp-action="AssignRoleToUser">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Select Role Name
+                    </th>
+                    <th>
+                        Select User Name
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                         <select class="form-control"
+                    asp-items="@ViewBag.RoleList" asp-for="@Model.RoleName"></select>
+                    </td>
+                    <td>
+                         <select class="form-control"
+                    asp-items="@ViewBag.UserList" asp-for="@Model.UserName"></select>
+                    </td>
+                </tr>
+            </tbody>
+            
+        </table>
+        <input type="submit" value="Assign Role To User" class="btn btn-succsess`"/>
+    </form>
+</div>  
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

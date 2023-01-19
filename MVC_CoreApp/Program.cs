@@ -43,9 +43,27 @@ builder.Services.AddScoped<EmployeeDataAccess>();
 
 // Added in .NET 6 standard Error Page
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+
 // Later to Learn
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+// INternally, this registers following two classed in DI Container
+// 1. UserManager<IdentityUser>, class used to create, read, update, and delete users
+// 2. SignInManager<IdentityUser>, class used to Manage LogIn, and LogOff
+//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+//    .AddEntityFrameworkStores<ApplicationDbContext>(); // USers will be stored in SQL Server Database and will be read using ENtityFrameworkCore using ApplicationDbContext  
+
+
+// Now Instead of using Just UserManager and SignInManager, also register and Resolve RoleManager
+
+// The AddIdentity<IdentityUser, IdentityRole> will Register and Resolve the folowing
+// UserManager<IdentityUser>
+// SignInManager<IdentityUser>
+// RoleManager<IdentityRole>
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+
+// Add the AddRazorPages() service so that with USerManager, RoleManager, and SignManager the Register and Login Pages (RAzor Pages) will be executed
+
+builder.Services.AddRazorPages();
 
 // COnfgure the Session Service
 builder.Services.AddSession(options=> 
@@ -61,9 +79,9 @@ builder.Services.AddSession(options=>
 // Define Action FIlter in GLobal Level for MVC and API Cotrollers
 builder.Services.AddControllersWithViews(options => 
 {
-    options.Filters.Add(typeof(LogFilterAttribute));
-    // Register the Exception Filter
-    options.Filters.Add(typeof(AppExceptionFilterAttribute));
+    //options.Filters.Add(typeof(LogFilterAttribute));
+    //// Register the Exception Filter
+    //options.Filters.Add(typeof(AppExceptionFilterAttribute));
 });
 
 

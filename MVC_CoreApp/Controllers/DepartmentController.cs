@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MVC_CoreApp.CustomFilters;
 using MVC_CoreApp.CustomSessionExtensions;
 using MVC_CoreApp.Models;
@@ -11,7 +12,8 @@ namespace MVC_CoreApp.Controllers
     /// APplying Action Filter at Controller Level
     /// Hence applied for all action methods in the Current Controller
     /// </summary>
-   // [LogFilter]
+    // [LogFilter]
+    [Authorize]
     public class DepartmentController : Controller
     {
         // Referece for DepartmentDataAccess
