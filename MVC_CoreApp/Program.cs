@@ -59,11 +59,33 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 // UserManager<IdentityUser>
 // SignInManager<IdentityUser>
 // RoleManager<IdentityRole>
-builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultUI();
+// AddDefaultUI(): Will load Login PAge as well as Access Denined Page
 
 // Add the AddRazorPages() service so that with USerManager, RoleManager, and SignManager the Register and Login Pages (RAzor Pages) will be executed
 
 builder.Services.AddRazorPages();
+
+// Defining the policies aka Group for Roles
+
+builder.Services.AddAuthorization(options => 
+{
+    options.AddPolicy("ReadPolicy", policy => 
+    {
+        policy.RequireRole("Manager", "Clerk", "Operator");
+    });
+
+    options.AddPolicy("CreatePolicy", policy =>
+    {
+        policy.RequireRole("Manager", "Clerk");
+    });
+    options.AddPolicy("EditDeletePolicy", policy =>
+    {
+        policy.RequireRole("Manager");
+    });
+});
+
+
 
 // COnfgure the Session Service
 builder.Services.AddSession(options=> 

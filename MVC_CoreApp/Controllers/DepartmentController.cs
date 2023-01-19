@@ -13,7 +13,7 @@ namespace MVC_CoreApp.Controllers
     /// Hence applied for all action methods in the Current Controller
     /// </summary>
     // [LogFilter]
-    [Authorize]
+  //  [Authorize]
     public class DepartmentController : Controller
     {
         // Referece for DepartmentDataAccess
@@ -33,15 +33,20 @@ namespace MVC_CoreApp.Controllers
 
         /// <summary>
         /// Applying Action Filter on Action Method
+        /// The 'Authorize' specifies that the Method will be accessed to 
+        /// "Manager, Clerk, Operator" roles
         /// </summary>
         /// <returns></returns>
         //[LogFilter]
+        // [Authorize(Roles = "Manager, Clerk, Operator")]
+        [Authorize(Policy = "ReadPolicy")]
         public IActionResult Index()
         {
             var records = deptDa.GetDepartments();
             return View(records);
         }
-
+        // [Authorize(Roles = "Manager, Clerk")]
+        [Authorize(Policy = "WritePolicy")]
         public IActionResult Create()
         {
             var entity = new Department();
@@ -102,7 +107,8 @@ namespace MVC_CoreApp.Controllers
             //    });
             //}
         }
-
+        // [Authorize(Roles = "Manager")]
+        [Authorize(Policy = "EditDeletePolicy")]
         public IActionResult Edit(int id)
         { 
             var record = deptDa.GetDepartment(id);
@@ -116,7 +122,7 @@ namespace MVC_CoreApp.Controllers
             var record = deptDa.UpdateDepartment(id, rec);
             return RedirectToAction("Index");
         }
-
+        [Authorize(Roles = "Manager")]
         public IActionResult Delete(int id)
         {
             var record = deptDa.DeleteDepartment(id);
