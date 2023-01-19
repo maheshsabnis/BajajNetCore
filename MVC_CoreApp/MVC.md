@@ -102,6 +102,21 @@
 	- ALl these context classes are derived from FilterContext and The FilterContext is deried from ActionContext base class
 		- Hence these methos will be executed when the filter is applied on 'Controller' class or on ActionMethod
 	- For Exception, the class MUST implement 'IExceptionFilter' interface and implement it 'OnExceptionMethod(ExceptionContext )'
+- ViewData \ ViewBag
+	- ViewData: ViewDataDictionary, Key:Value pair for the data passed from THe Action MEthod to the View Returned by the Action Method
+	- ViewBag: ViewBag.Key, dynamic object, this will be constructed at execution time
+	- THese objects are part of 'One-Single-Request' 	
 - Sharing Data Across Controllers
 	- Sessions
+		- Data for a Specific User stored on Web Server
+		- Session-Data is the Data tat is maintained by the server in its memory till eith timeout does not occur or the user does not logout
+		- To STore the Session Data (Session State) in ASP.NET Core use Caching
+	- Caching
+		- Data for All Users stored on Web Server
+		- 'RedisCache'
 	- TempData
+		- This is an object of the Type TempDataDictionary, this is sued to store data on server across requests. THe Monent the Response is generated,the TempData will be cleaned by the server 
+		- TempData.Keep()
+			- Store all Keys and its values on server
+		- TempData.Keep("KEY")
+			- ONly this Key will be stored on server for Next New Reuest

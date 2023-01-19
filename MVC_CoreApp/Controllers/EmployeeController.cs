@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MVC_CoreApp.CustomFilters;
+using MVC_CoreApp.CustomSessionExtensions;
 using MVC_CoreApp.Models;
 using MVC_CoreApp.Services;
+using System.Text.Json;
 
 namespace MVC_CoreApp.Controllers
 {
@@ -37,12 +39,36 @@ namespace MVC_CoreApp.Controllers
         //[LogFilter]
         public IActionResult Index()
         {
-            var records = empDa.GetEmployees();
+            List<Employee> records= new List<Employee>();
+            // read data from TempData
+            //  int deptUniqueId = Convert.ToInt32( TempData["DeptUniqueId"]);
+            // Retrieve data from Session
+            int deptUniqueId = Convert.ToInt32(HttpContext.Session.GetInt32("DeptUniqueId"));
+
+            //Department deptData = JsonSerializer.Deserialize<Department>(HttpContext.Session.GetString("Dept"));
+
+            Department deptData = HttpContext.Session.GetObjet<Department>("Dept");
+
+            if (deptUniqueId == 0)
+            {
+                records = empDa.GetEmployees();
+            }
+            else
+            { 
+              records = empDa.GetEmployees().Where(e=>e.DeptUniqueId == deptUniqueId).ToList();
+            }
+
+            // Before Leaving Index Action Method 'Keep' TempData
+
+            //TempData.Keep();
+
             return View(records);
         }
 
         public IActionResult Create()
         {
+            int deptUniqueId = Convert.ToInt32(HttpContext.Session.GetInt32("DeptUniqueId"));
+            // var id = Convert.ToInt32(TempData["DeptUniqueId"]); 
             var entity = new Employee();
             // Get Departments and its DeptName
             // We are taking SelectListItem list because
@@ -66,6 +92,7 @@ namespace MVC_CoreApp.Controllers
         [HttpPost]
         public IActionResult Create(Employee rec) 
         {
+            var id = Convert.ToInt32(TempData["DeptUniqueId"]);
             //try
             //{
             // Check for the Validtity of the Model Class

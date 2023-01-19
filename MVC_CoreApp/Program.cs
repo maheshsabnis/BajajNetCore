@@ -47,6 +47,14 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
+// COnfgure the Session Service
+builder.Services.AddSession(options=> 
+{
+    // Session Time out will be 20 mins
+   options.IdleTimeout = TimeSpan.FromMinutes(20);
+});
+
+
 // 1.a.4: A method tat is used to accept requesr for MVC Controllers
 // and handle its execution to return Views
 
@@ -77,6 +85,13 @@ else
 }
 // Map the Http Request with Https
 app.UseHttpsRedirection();
+
+// Configure the Session Middleware so that the
+// HttpPipeline will know that the current request will be monitored usig the
+// Session Objects i.e. HttpCOntext.Session
+
+app.UseSession();
+
 // Read wwwroot folder
 app.UseStaticFiles();
 // Read the Controller/Action from the Http Reqiest URL and

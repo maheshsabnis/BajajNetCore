@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MVC_CoreApp.CustomFilters;
+using MVC_CoreApp.CustomSessionExtensions;
 using MVC_CoreApp.Models;
 using MVC_CoreApp.Services;
+using System.Text.Json;
 
 namespace MVC_CoreApp.Controllers
 {
@@ -118,6 +120,25 @@ namespace MVC_CoreApp.Controllers
             var record = deptDa.DeleteDepartment(id);
             return RedirectToAction("Index");
         }
+
+
+        public IActionResult ShowDetails(int id)
+        {
+            var deptUniqueId = id;
+            // TempData["DeptUniqueId"] = id;
+            // Saving Data in Session State
+            HttpContext.Session.SetInt32("DeptUniqueId", id);
+
+            // Get the Department Objet based on DeptUniqueId
+            var dept = deptDa.GetDepartment(id);
+            // HttpContext.Session.SetString("Dept", JsonSerializer.Serialize(dept));
+            // The Custom Session Extension
+            HttpContext.Session.SetObject<Department>("Dept", dept);
+
+            // Respond the Index Action Method of EmployeeController
+            return RedirectToAction("Index", "Employee");
+        }
     }
+
 
 }
