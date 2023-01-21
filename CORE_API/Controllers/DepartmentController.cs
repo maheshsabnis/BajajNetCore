@@ -34,13 +34,24 @@ namespace CORE_API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(Department dept)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var result = await deptServ.CreateAsync(dept);
-                return Ok(result);
+                if (ModelState.IsValid)
+                {
+                    // Check if the DEptNo is already exists
+                   var d = (await deptServ.GetAsync()).Where(r=>r.DeptNo.Trim() == dept.DeptNo.Trim()).FirstOrDefault();
+                    if (d != null)
+                        throw new Exception("Depat is already exist");
+                    var result = await deptServ.CreateAsync(dept);
+                    return Ok(result);
+                }
+                // rETURN Validation Errors
+                return BadRequest(ModelState);
             }
-            // rETURN Validation Errors
-            return BadRequest(ModelState);
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, Department dept)

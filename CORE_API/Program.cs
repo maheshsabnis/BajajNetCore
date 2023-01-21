@@ -17,8 +17,13 @@ builder.Services.AddDbContext<BajajCompanyContext>(options =>
 builder.Services.AddScoped<IDataService<Department,int>, DepartmentDataService>();
 builder.Services.AddScoped<IDataService<Employee,int>,EmployeeDataService>();
 
-
-builder.Services.AddControllers();
+// Lets modify the response type as JSON
+// Disabing the Camel Casing JSON Serializatin for the
+// Response
+builder.Services.AddControllers()
+    .AddJsonOptions(options => 
+                options.JsonSerializerOptions.PropertyNamingPolicy = null
+    ); 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 // The Swagger DOcumetations for Testing APIs
