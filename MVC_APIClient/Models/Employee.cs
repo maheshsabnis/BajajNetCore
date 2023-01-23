@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CORE_API.MOdels
+namespace MVC_APIClient.MOdels
 {
-    public partial class Employee : EntityBase
+    public partial class Employee  
     {
         public int EmpUniqueId { get; set; }
         public string EmpNo { get; set; } = null!;

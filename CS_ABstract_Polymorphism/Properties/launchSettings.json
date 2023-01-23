@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "CS_ABstract_Polymorphism": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:52822;http://localhost:52832"
+    }
+  }
+}

@@ -17,6 +17,20 @@ builder.Services.AddDbContext<BajajCompanyContext>(options =>
 builder.Services.AddScoped<IDataService<Department,int>, DepartmentDataService>();
 builder.Services.AddScoped<IDataService<Employee,int>,EmployeeDataService>();
 
+builder.Services.AddScoped<INewDataService<Department, int>, DepartmentDataNewService>();
+
+// COnfigure the CORS Service
+// FOr all Headers, Origins, and Methods
+builder.Services.AddCors(options => 
+{
+    options.AddPolicy("CORS", policy => 
+    {
+       policy.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod();
+    });
+});
+
+
+
 // Lets modify the response type as JSON
 // Disabing the Camel Casing JSON Serializatin for the
 // Response
@@ -43,6 +57,12 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// COfigure the CORS Middleware so that HTTP Pipeline will vaidate 
+// theincomming request beased on poliy settings for Headers,methods,and Origins
+
+app.UseCors("CORS");
+
 
 app.UseAuthorization();
 // Link the Request to ApiControllers

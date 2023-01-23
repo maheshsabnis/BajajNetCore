@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "CS_STring_Interpolation_Template_String": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:52816;http://localhost:52825"
+    }
+  }
+}

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-using CORE_API.CustomValidators;
-namespace CORE_API.MOdels
+ 
+namespace MVC_APIClient.MOdels
 {
-    public partial class Department : EntityBase
+    public partial class Department  
     {
         public Department()
         {
@@ -18,7 +18,6 @@ namespace CORE_API.MOdels
         [Required(ErrorMessage = "DeptName is required")]
         public string DeptName { get; set; } = null!;
         [Required(ErrorMessage = "Capacity is required")]
-        [NumericNonNegative]
         public int Capacity { get; set; }
         [Required(ErrorMessage = "Location is required")]
         public string Location { get; set; } = null!;

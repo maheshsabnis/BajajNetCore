@@ -1,0 +1,24 @@
+﻿<html>
+    <head>
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script>
+            $(document).ready(function(){
+               $("#btnget").on('click',function(){
+                 $.ajax({
+                    url: 'https://localhost:7257/api/DepartmentNew',
+                    type:'GET'
+                 }).done(function(resp){
+                      alert(JSON.stringify(resp));
+                 }).fail(function(error){
+                   alert(error);
+                 });
+               });
+            });
+        </script>
+    </head>
+    <body>
+        <button id="btnget"> Get Data</button>
+        <hr/>
+    <button id="btnpost">Post Data</button>
+    </body>
+</html>
