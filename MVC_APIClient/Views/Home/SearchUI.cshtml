@@ -1,0 +1,11 @@
+﻿@model MVC_APIClient.Models.SearchModel
+<form asp-action="SearchUI">
+
+    <div class="form-group">
+        <label>Enter Search String Here:</label>
+        <input asp-for="@Model.Expression" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Search" class="btn btn-primary"/>
+    </div>
+</form>    

@@ -55,6 +55,22 @@ namespace MVC_APIClient.Controllers
         }
 
 
+        
+        public IActionResult SearchUI()
+        {
+            return View(new SearchModel());
+        }
+        [HttpPost]
+        public async Task<IActionResult> SearchUI(SearchModel search)
+        {
+            var response = await client.GetFromJsonAsync<string>($"https://localhost:7257/api/Search/fetch/{search.Expression}");
+
+
+            
+            return View();
+        }
+
+
 
 
     }
