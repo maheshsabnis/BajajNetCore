@@ -71,6 +71,13 @@ namespace MVC_APIClient.Controllers
         }
 
 
+        public IActionResult FileUpload()
+        {
+            return View();
+        }
+
+
+
 
 
     }

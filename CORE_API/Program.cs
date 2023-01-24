@@ -1,3 +1,4 @@
+using CORE_API.CustomMiddlewares;
 using CORE_API.MOdels;
 using CORE_API.Services;
 using Microsoft.EntityFrameworkCore;
@@ -44,6 +45,11 @@ builder.Services.AddControllers()
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+ 
+
+// WebApplicationBuilder class, implements the 'IApplicationBuilder' Interface
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -58,6 +64,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseStaticFiles();
+
+
 // COfigure the CORS Middleware so that HTTP Pipeline will vaidate 
 // theincomming request beased on poliy settings for Headers,methods,and Origins
 
@@ -65,6 +74,10 @@ app.UseCors("CORS");
 
 
 app.UseAuthorization();
+// Register the Custom Exception Middleware
+app.UseException();
+
+
 // Link the Request to ApiControllers
 app.MapControllers();
 
