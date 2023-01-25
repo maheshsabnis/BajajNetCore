@@ -23,5 +23,7 @@
         /// THe STtaus code based on State of execution
         /// </summary>
         public int StatusCode { get; set; }
+
+        public string? Token { get; set; }
     }
 }
