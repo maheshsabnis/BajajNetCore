@@ -1,9 +1,19 @@
+using CORE_API.AUthServiceInfra;
 using CORE_API.CustomMiddlewares;
 using CORE_API.MOdels;
 using CORE_API.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// REgisterig the SecurityDbNewCOntext in DI
+
+builder.Services.AddDbContext<SecurityDbNewContext>(options => 
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SecureConnection"));
+});
+
 
 // Add services to the container.
 // For API Controllers
@@ -13,11 +23,18 @@ builder.Services.AddDbContext<BajajCompanyContext>(options =>
 });
 
 
+// Register IDentity for USerManager<IdentityUser> and SIgnInManager<IdentityUser>
+// THe USer Details are stored in SQL Server Database
+// THis is Accessed using the SecurityDbNewContext
+builder.Services.AddDefaultIdentity<IdentityUser>()
+    .AddEntityFrameworkStores<SecurityDbNewContext>();
+
+
 // Register the Services based on interface impletemented by them
 
 builder.Services.AddScoped<IDataService<Department,int>, DepartmentDataService>();
 builder.Services.AddScoped<IDataService<Employee,int>,EmployeeDataService>();
-
+builder.Services.AddScoped<AUthService>();
 builder.Services.AddScoped<INewDataService<Department, int>, DepartmentDataNewService>();
 
 // COnfigure the CORS Service
