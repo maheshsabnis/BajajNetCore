@@ -14,6 +14,7 @@ using System.Reflection;
 // Assemble all necessary object for ASP.NET Core App
 var builder = WebApplication.CreateBuilder(args);
 
+
 // a. Add services to the container aka Dependency Container
 // REading the ConnectionString from appsettings.json file using ConfigurationManager class
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");

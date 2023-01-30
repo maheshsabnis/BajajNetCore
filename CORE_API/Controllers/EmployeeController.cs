@@ -1,12 +1,19 @@
 ﻿using CORE_API.MOdels;
 using CORE_API.Services;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
+using System.Net.Http.Headers;
+using System.Net.Mime;
 
 namespace CORE_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [ApiVersion("1.0")] //api-version=1.0
+    [Consumes(MediaTypeNames.Application.Json)]
+    [Produces(MediaTypeNames.Application.Json)]
     public class EmployeeController : ControllerBase
     {
         // Lets inject the IDataService<Employee,int>

@@ -2,8 +2,11 @@ using CORE_API.AUthServiceInfra;
 using CORE_API.CustomMiddlewares;
 using CORE_API.MOdels;
 using CORE_API.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,6 +50,50 @@ builder.Services.AddCors(options =>
     });
 });
 
+// REgister the Authentication Service for Token Validation
+
+
+// Inform to the Host that the Current API is using Token BAsed AUthorication 
+
+// Logic for Token Verification
+byte[] secretKey = Convert.FromBase64String(builder.Configuration["JWTSettings:SecretKey"]);
+builder.Services.AddAuthentication(x =>
+{
+    // set the Scheme for HEader Value Verification
+    // HTTP Request Header MUST use the Authorzation:'Bearer <TOKEN-VALUE>'
+    // in Request
+    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    // The Request is verified for Checking if it is for Log-In
+    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+// Validate the Token
+.AddJwtBearer(x =>
+{
+    x.RequireHttpsMetadata = false;
+    x.SaveToken = true; // THis will make sure that the tokne is saved in teh Server's Process so that it can be validated against the received token from the request
+    x.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true, // Signeture Verification
+        IssuerSigningKey = new SymmetricSecurityKey(secretKey), // Decrypt the Infrmatio from token to validate it
+        ValidateIssuer = false,
+        ValidateAudience = false
+    };
+});
+
+
+
+// COde Ensd Here
+
+builder.Services.AddApiVersioning(o =>
+{
+    o.AssumeDefaultVersionWhenUnspecified = true;
+    o.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
+    o.ReportApiVersions = true;
+    o.ApiVersionReader = ApiVersionReader.Combine(
+        new QueryStringApiVersionReader("api-version"), // https://localhost:5532/api/Employee?api-version=1.0
+        new HeaderApiVersionReader("X-Version"), // X-Version:1.0
+        new MediaTypeApiVersionReader("ver")); // Content-Type:ver=1.0
+});
 
 
 // Lets modify the response type as JSON
@@ -89,7 +136,7 @@ app.UseStaticFiles();
 
 app.UseCors("CORS");
 
-
+app.UseAuthentication();
 app.UseAuthorization();
 // Register the Custom Exception Middleware
 app.UseException();

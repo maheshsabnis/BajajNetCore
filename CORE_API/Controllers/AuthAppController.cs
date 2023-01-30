@@ -23,5 +23,15 @@ namespace CORE_API.Controllers
             return response;
         }
 
+        [HttpPost]
+        [ActionName("login")]
+        public async Task<ResponseObject<LoginUser>> Login(LoginUser user)
+        {
+            ResponseObject<LoginUser> response = await service.AuthenticateAsync(user);
+            return response;
+        }
+
+
+
     }
 }
